@@ -1,7 +1,7 @@
 :root {
   --font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   --text-color: rgba(255, 255, 255, 0.87);
-  --bg-color: ##1a1a1a;
+  --bg-color: #1a1a1a; 
 
   font-family: var(--font-family);
   line-height: 1.5;
@@ -75,18 +75,77 @@ body {
   font-size: 1rem;
   font-weight: 500;
   transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
 }
 
-/* אפקט מעבר */
+
 .nav-link:hover {
-  background-color: #e50914; /* אדום נטפליקס */
+  background-color: #e50914; 
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(229, 9, 20, 0.5);
 }
 
-/* מצב לחיצה */
+
 .nav-link:active {
   transform: translateY(1px);
   box-shadow: 0 2px 6px rgba(229, 9, 20, 0.4);
+}
+.nav-link.toBeAdded {
+  color: #aaa;             
+  cursor: not-allowed;
+  pointer-events: none;
+  font-weight: bold;
+}
+
+
+.nav-link.toBeAdded::after {
+  content: "Coming Soon";
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  font-size: 0.7rem;
+  color: #e50914;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.nav-link.toBeAdded:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-link.active {
+  background-color: #e50914; /* אדום נטפליקס */
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(229, 9, 20, 0.5);
+}
+.nav-link.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(229, 9, 20, 0.7);
+}
+.nav-link.active:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(229, 9, 20, 0.4);
+}   
+
+.my-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.my-table th,
+.my-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.my-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
 }
