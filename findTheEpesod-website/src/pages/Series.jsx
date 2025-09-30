@@ -33,7 +33,7 @@ export default function Series() {
   <div>
     <h2>Popular:</h2>
   </div>
-  <div className="cards-grid">   {/* ⬅️ עטיפה עם className */}
+  <div className="cards-grid">
     {seriesList.map((seriesItem, index) => (
       <Link
         key={index}
