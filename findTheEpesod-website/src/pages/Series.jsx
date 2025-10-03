@@ -25,11 +25,15 @@ export default function Series() {
 ];
 
   return (
-    <div>
-      <h2>Series Page</h2>
-      <p>This is the Series page.</p>
-
-      <div>
+    <>
+    <h2>Series Page</h2>
+        <div className="search-bar">
+      <input
+        type="text"
+        placeholder="Search..."
+      />
+      <button >Search</button>
+    </div>
   <div>
     <h2>Popular:</h2>
   </div>
@@ -49,8 +53,7 @@ export default function Series() {
       </Link>
     ))}
   </div>
- </div>
-</div>
+    </>  
   );
 }
 
