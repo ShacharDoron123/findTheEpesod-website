@@ -28,7 +28,8 @@ export default function Series() {
 
   return (
     <>
-    <h2 className="title">Series Page</h2>
+    <h2 className="title">Series Page:</h2>
+    <br/>
         <div className="search-bar">
       <input
         type="text"

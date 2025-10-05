@@ -15,6 +15,13 @@ export default function SeriesInfo() {
   if (seriesItem.title === "The Big Bang Theory") {
     return (
       <>
+       <div className="search-bar">
+      <input
+        type="text"
+        placeholder="Search..."
+      />
+      <button >Search</button>
+    </div>
         <button onClick={() => navigate(-1)}>
       ⬅ Back
     </button>
@@ -56,6 +63,13 @@ export default function SeriesInfo() {
       if (seriesItem.title === "young Sheldon") {
     return (
       <>
+       <div className="search-bar">
+      <input
+        type="text"
+        placeholder="Search..."
+      />
+      <button >Search</button>
+    </div>
         <button onClick={() => navigate(-1)}>
       ⬅ Back
     </button>
