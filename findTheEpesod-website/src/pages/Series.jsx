@@ -1,6 +1,8 @@
 import Card from "../components/Card.jsx";
 import { Link } from "react-router-dom";
 import The_Big_Bang_Theory from "../assets/The_Big_Bang_Theory.webp";
+import Brooklyn_Nine_Nine from "../assets/Brooklyn_Nine_Nine.jpg";
+import Young_Sheldon from "../assets/Young_Sheldon.webp";
 
 export default function Series() {
   const seriesList = [
@@ -11,22 +13,22 @@ export default function Series() {
     image: The_Big_Bang_Theory,
   },
   {
-    title: "Friends",
+    title: "young Sheldon",
     description:
-      "Six friends living in Manhattan navigate life, love, and laughter together.",
-    image: "",
+      "A spin-off prequel to The Big Bang Theory, focusing on the childhood of Sheldon Cooper in East Texas.",
+    image: Young_Sheldon,
   },
   {
     title: "Brooklyn Nine-Nine",
     description:
       "A comedic look at the lives of detectives in a Brooklyn precinct.",
-    image: "",
+    image: Brooklyn_Nine_Nine,
   },
 ];
 
   return (
     <>
-    <h2>Series Page</h2>
+    <h2 className="title">Series Page</h2>
         <div className="search-bar">
       <input
         type="text"
