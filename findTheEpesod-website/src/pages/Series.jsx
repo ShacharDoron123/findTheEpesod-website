@@ -56,9 +56,7 @@ export default function Series() {
       <div className="cards-grid">
         {seriesList
           .filter((seriesItem) => {
-            // אם אין חיפוש – מציג הכול
             if (search === "") return true;
-            // אם יש חיפוש – מציג רק מה שמתאים
             return seriesItem.title
               .toLowerCase()
               .includes(search.toLowerCase());

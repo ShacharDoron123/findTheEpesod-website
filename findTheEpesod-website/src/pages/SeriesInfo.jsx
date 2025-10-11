@@ -1,9 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Table from "../components/Table.jsx";
+import Brooklyn_Nine_Nine from "../tables-Information/Brooklyn-Nine-Nine.js";
 import { The_Big_Bang_Theory } from "../tables-Information/The-Big-Bang-Theory.js";
 import Young_Sheldon from "../tables-Information/Young_Sheldon.js";
-import Brooklyn_Nine_Nine from "../tables-Information/Brooklyn-Nine-Nine.js";
 
 export default function SeriesInfo() {
   const location = useLocation();
@@ -60,6 +60,10 @@ export default function SeriesInfo() {
         <input type="text" placeholder="Search..." />
         <button>Search</button>
       </div>
+        <p>
+           Here you can search for keywords to find the episode you’re looking for, or
+           by its name, release date.
+        </p>
     <nav className="season-nav">
       {Object.keys(seriesData).map((seasonKey) => (
         <button

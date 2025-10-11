@@ -13,7 +13,7 @@ export const The_Big_Bang_Theory = {
       ["9", "The Cooper-Hofstadter Polarization", "Sheldon and Leonard fight over authorship credit.", "2008-03-17"],
       ["10", "The Loobenfeld Decay", "Leonard lies to Penny to avoid her play.", "2008-03-24"],
       ["11", "The Pancake Batter Anomaly", "Sheldon gets sick and Penny is stuck caring for him.", "2008-03-31"],
-      ["12", "The Jerusalem Duality", "A 15-year-old prodigy threatens Sheldon’s ego.", "2008-04-14"],
+      ["12", "The Jerusalem Duality", "A 15-year-old prodigy threatens Sheldon’s ego, and Sheldon tries to solve the Middle East problem in order to win the Nobel Prize in Peace.", "2008-04-14"],
       ["13", "The Bat Jar Conjecture", "Sheldon is kicked out of the Physics Bowl team.", "2008-04-21"],
       ["14", "The Nerdvana Annihilation", "Leonard buys a time machine prop.", "2008-04-28"],
       ["15", "The Pork Chop Indeterminacy", "Sheldon's twin sister Missy visits.", "2008-05-05"],
