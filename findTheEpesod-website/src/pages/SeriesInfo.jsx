@@ -30,18 +30,16 @@ export default function SeriesInfo() {
     return <p>Series not found</p>;
   }
 
-
   const updateSearch = (e) => {
     setSearch(e.target.value.toLowerCase());
   };
+  
+  const isSearching = search.trim().length > 0;
 
- 
   const getFilteredData = () => {
-    if (!search.trim()) return seriesData[selectedSeason].data;
-
+    if (!isSearching) return seriesData[selectedSeason].data;
 
     const allEpisodes = Object.values(seriesData).flatMap((season) => season.data);
-
 
     const filtered = allEpisodes.filter((episode) =>
       episode.some((cell) => cell.toLowerCase().includes(search))
@@ -85,6 +83,7 @@ export default function SeriesInfo() {
           value={search}
         />
       </div>
+
       <p>
         Here you can search for keywords to find the episode you’re looking for,
         by its name or release date — across all seasons.
@@ -97,6 +96,7 @@ export default function SeriesInfo() {
             key={seasonKey}
             className={selectedSeason === seasonKey ? "active" : ""}
             onClick={() => setSelectedSeason(seasonKey)}
+            disabled={isSearching}
           >
             {seasonKey.replace("season", "Season ")}
           </button>
@@ -104,10 +104,16 @@ export default function SeriesInfo() {
       </nav>
 
       {/* טבלה */}
-      {seriesData[selectedSeason] && (
+      {filteredData.length === 0 ? (
+        <p>No results found for "{search}"</p>
+      ) : (
         <Table
-          season={selectedSeason.replace("season", "")}
-          columns={seriesData[selectedSeason].columns}
+          season={
+            isSearching
+              ? "Search Results"
+              : selectedSeason.replace("season", "")
+          }
+          columns={seriesData.season1.columns}
           data={filteredData}
         />
       )}
