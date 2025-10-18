@@ -33,7 +33,8 @@ export default function SeriesInfo() {
   const updateSearch = (e) => {
     setSearch(e.target.value.toLowerCase());
   };
-  
+
+
   const isSearching = search.trim().length > 0;
 
   const getFilteredData = () => {
