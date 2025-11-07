@@ -7,47 +7,57 @@ import Young_Sheldon from "../tables-Information/Young_Sheldon.js";
 
 export default function SeriesInfo() {
   const [search, setSearch] = useState("");
+  const [yearSearch, setYearSearch] = useState("");
   const [selectedSeason, setSelectedSeason] = useState("season1");
 
   const location = useLocation();
   const navigate = useNavigate();
   const seriesItem = location.state;
 
-  if (!seriesItem) {
-    return <p>No series selected</p>;
-  }
+  if (!seriesItem) return <p>No series selected</p>;
 
   const title = seriesItem.title.toLowerCase();
   let seriesData;
 
-  if (title === "the big bang theory") {
-    seriesData = The_Big_Bang_Theory;
-  } else if (title === "young sheldon") {
-    seriesData = Young_Sheldon;
-  } else if (title === "brooklyn nine-nine") {
-    seriesData = Brooklyn_Nine_Nine;
-  } else {
-    return <p>Series not found</p>;
-  }
+  if (title === "the big bang theory") seriesData = The_Big_Bang_Theory;
+  else if (title === "young sheldon") seriesData = Young_Sheldon;
+  else if (title === "brooklyn nine-nine") seriesData = Brooklyn_Nine_Nine;
+  else return <p>Series not found</p>;
 
-  const updateSearch = (e) => {
-    setSearch(e.target.value.toLowerCase());
-  };
+  const updateSearch = (e) => setSearch(e.target.value.toLowerCase());
+  const updateYearSearch = (e) => setYearSearch(e.target.value);
 
+  const isTextSearching = search.trim().length > 0;
+  const isYearSearching = yearSearch.trim().length > 0;
 
-  const isSearching = search.trim().length > 0;
+ const getFilteredData = () => {
+  if (!isTextSearching && !isYearSearching)
+    return seriesData[selectedSeason].data;
 
-  const getFilteredData = () => {
-    if (!isSearching) return seriesData[selectedSeason].data;
+  // איסוף כל הפרקים מכל העונות
+  const allEpisodes = Object.values(seriesData).flatMap(
+    (season) => season.data
+  );
 
-    const allEpisodes = Object.values(seriesData).flatMap((season) => season.data);
+  // סינון לפי שם וגם לפי שנה, כולל hiddenInfo
+  const filtered = allEpisodes.filter((episode) => {
+    const matchText = search
+      ? Object.values(episode).some((value) =>
+          value.toLowerCase().includes(search)
+        )
+      : true;
 
-    const filtered = allEpisodes.filter((episode) =>
-      episode.some((cell) => cell.toLowerCase().includes(search))
-    );
+    const matchYear = yearSearch
+      ? Object.values(episode).some((value) =>
+          value.includes(yearSearch)
+        )
+      : true;
 
-    return filtered;
-  };
+    return matchText && matchYear;
+  });
+
+  return filtered;
+};
 
   const filteredData = getFilteredData();
 
@@ -75,13 +85,22 @@ export default function SeriesInfo() {
         )}
       </div>
 
-      {/* תיבת חיפוש */}
+      {/* תיבות חיפוש */}
       <div className="search-bar">
         <input
           type="text"
           placeholder="Search for episode name, date, etc..."
           onChange={updateSearch}
           value={search}
+        />
+        <input
+          type="number"
+          placeholder="Enter the air year of the episode you're looking for"
+          min={seriesItem.min}
+          max={seriesItem.max}
+          step="1"
+          onChange={updateYearSearch}
+          value={yearSearch}
         />
       </div>
 
@@ -97,7 +116,7 @@ export default function SeriesInfo() {
             key={seasonKey}
             className={selectedSeason === seasonKey ? "active" : ""}
             onClick={() => setSelectedSeason(seasonKey)}
-            disabled={isSearching}
+            disabled={isTextSearching || isYearSearching}
           >
             {seasonKey.replace("season", "Season ")}
           </button>
@@ -106,11 +125,11 @@ export default function SeriesInfo() {
 
       {/* טבלה */}
       {filteredData.length === 0 ? (
-        <p>No results found for "{search}"</p>
+        <p>No results found for "{search || yearSearch}"</p>
       ) : (
         <Table
           season={
-            isSearching
+            isTextSearching || isYearSearching
               ? "Search Results"
               : selectedSeason.replace("season", "")
           }

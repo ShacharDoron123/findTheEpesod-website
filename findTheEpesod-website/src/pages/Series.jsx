@@ -19,18 +19,24 @@ export default function Series() {
       description:
         "A popular sitcom about a group of friends who are scientists and their interactions with each other and the people around them.",
       image: The_Big_Bang_Theory,
+      min: 2007,
+      max: 2019,
     },
     {
       title: "Young Sheldon",
       description:
         "A spin-off prequel to The Big Bang Theory, focusing on the childhood of Sheldon Cooper in East Texas.",
       image: Young_Sheldon,
+      min: 2017,
+      max: 2023,
     },
     {
       title: "Brooklyn Nine-Nine",
       description:
         "A comedic look at the lives of detectives in a Brooklyn precinct.",
       image: Brooklyn_Nine_Nine,
+      min: 2013,
+      max: 2021,
     },
   ];
 
@@ -48,7 +54,7 @@ export default function Series() {
           value={search}
         />
       </div>
-
+      <h3>More series are coming soon</h3>
       <div>
         <h2>Popular:</h2>
       </div>

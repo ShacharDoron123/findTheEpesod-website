@@ -1,11 +1,13 @@
 export default function Table({ season, columns, data }) {
+  const visibleColumns = columns.filter(col => col !== "hiddenInfo");
+
   return (
     <>
       <h1>Season {season}</h1>
       <table className="my-table">
         <thead>
           <tr>
-            {columns.map((col, i) => (
+            {visibleColumns.map((col, i) => (
               <th key={i}>{col}</th>
             ))}
           </tr>
@@ -13,8 +15,8 @@ export default function Table({ season, columns, data }) {
         <tbody>
           {data.map((row, i) => (
             <tr key={i}>
-              {row.map((cell, j) => (
-                <td key={j}>{cell}</td>
+              {visibleColumns.map((col, j) => (
+                <td key={j}>{row[col] || ""}</td>
               ))}
             </tr>
           ))}
